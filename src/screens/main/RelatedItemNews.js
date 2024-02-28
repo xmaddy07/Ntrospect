@@ -204,35 +204,6 @@ const RelatedItemNews = ({navigation, route}) => {
                 /> */}
               </View>
 
-              {/* {recomand_Data ? (
-                <View style={{marginTop: wp(5)}}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                    }}>
-                    <Text style={Stylesheet.Rodnae_txt9}>Popular News</Text>
-                    <TouchableOpacity>
-                      <Text style={Stylesheet.Rodnae_txt11}></Text>
-                    </TouchableOpacity>
-                  </View>
-
-                  <View>
-                    <FlatList
-                      showsHorizontalScrollIndicator={false}
-                      horizontal={true}
-                      data={recomand_Data}
-                      renderItem={renderItem}
-                      ListEmptyComponent={
-                        <Text style={[Stylesheet.emptytxt, {margin: 120}]}>
-                          No data available
-                        </Text>
-                      }
-                    />
-                  </View>
-                </View>
-              ) : null} */}
             </View>
           </View>
         </View>
@@ -242,6 +213,4 @@ const RelatedItemNews = ({navigation, route}) => {
 };
 
 export default RelatedItemNews;
-// Smarties, Nesquik, Stouffer's, Vittel, and Maggi. Nestlé has
-//                   447 factories, operates in 189 countries, and employs around
-//                   339,00
+

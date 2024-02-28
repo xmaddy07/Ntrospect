@@ -35,8 +35,8 @@ const Privacy_Policy = ({navigation}) => {
         <ReadMore
             numberOfLines={14}
             style={styles.Rodnae_txt8}
-            seeMoreStyle={{color: '#5FB9E8'}}
-            seeLessStyle={{color: '#5FB9E8'}}>
+            seeMoreStyle={{color: '#A2A2A2',fontSize:10,fontFamily:family.medium}}
+            seeLessStyle={{color: 'transparent'}}>
             În ciuda opiniei publice, Lorem Ipsum nu e un simplu text fără sens.
             El îşi are rădăcinile într-o bucată a literaturii clasice latine din
             anul 45 î.e.n., făcând-o să aibă mai bine de 2000 ani. Profesorul

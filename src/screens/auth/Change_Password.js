@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
   },
   textbox: {
     width: wp(89),
-    height: hp(9),
+    height: hp(7.5),
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
     elevation: 2,

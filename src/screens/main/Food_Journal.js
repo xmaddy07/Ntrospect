@@ -35,7 +35,6 @@ const Food_Journal = ({navigation, data}) => {
   const [value, setValue] = useState(null);
   const [open, setOpen] = useState(false);
 
-  const [counter, setCounter] = useState(1);
 
   const journalData = [
     {

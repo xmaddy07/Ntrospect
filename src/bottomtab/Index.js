@@ -105,6 +105,7 @@ export default function BIndex({navigation}) {
           borderTopWidth: 0,
         },
         tabBarActiveTintColor: colors.main,
+        tabBarInactiveTintColor:'#3B3B3B'
       }}>
       <Tab.Screen
         name="Products"
@@ -115,11 +116,12 @@ export default function BIndex({navigation}) {
             bottom: 5,
             fontSize: 9,
             fontFamily: family.regular,
+            
           },
 
           tabBarIcon: ({focused}) => (
             <Image
-              tintColor={focused ? colors.main : '#B8B9BB'}
+              tintColor={focused ? colors.main : '#3B3B3B'}
               style={{width: 22, height: 22}}
               source={images.KNIFE}
               resizeMode="contain"
@@ -146,7 +148,7 @@ export default function BIndex({navigation}) {
             <MaterialCommunityIcons
               name={'fire'}
               size={28}
-              style={{color: focused ? colors.main : '#B8B9BB'}}
+              style={{color: focused ? colors.main : '#3B3B3B'}}
             />
           ),
         }}
@@ -200,7 +202,7 @@ export default function BIndex({navigation}) {
             <FontAwesome5
               name={'book-open'}
               size={25}
-              style={{color: focused ? colors.main : '#B8B9BB', top: 3}}
+              style={{color: focused ? colors.main : '#3B3B3B', top: 3}}
             />
           ),
         }}
@@ -225,7 +227,7 @@ export default function BIndex({navigation}) {
             <FontAwesome
               name={'user'}
               size={25}
-              style={{color: focused ? colors.main : '#B8B9BB', top: 2}}
+              style={{color: focused ? colors.main : '#3B3B3B', top: 2}}
             />
           ),
         }}

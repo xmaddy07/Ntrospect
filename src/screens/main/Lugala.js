@@ -37,14 +37,10 @@ const Lugala = ({navigation, route}) => {
   const {data} = route.params;
   const user = useSelector(state => state.user.user);
 
-  const [clrchage, setClrchage] = useState(false);
-  const [clrchage2ns, setClrchage2nd] = useState(false);
   const [clrchage3rd, setClrchage3rd] = useState(false);
-  const [clrchage4th, setClrchage4th] = useState(false);
   const [indicator, setIndicator] = useState(false);
 
   const [ShowComment, setShowComment] = useState(false);
-  const [Falsemodal, setFalsemodal] = useState(false);
   const [detail, setDetailss] = useState([]);
   const [recomand_Data, setRecomand_Data] = useState([]);
   console.log('object', detail);
@@ -176,18 +172,17 @@ const Lugala = ({navigation, route}) => {
           visible={popupVisible}
           onClose={closePopup}
           foodDetails={{
-            foodName:detail.title,
+            foodName: detail.title,
             totalCalories: detail.calories,
-            servingSize:detail.serving_size,
-            weight:detail.weight,
+            servingSize: detail.serving_size,
+            weight: detail.weight,
           }}
           navigation={navigation}
         />
       )}
       <View style={Stylesheet.Container}>
         <View style={Stylesheet.Headerstyle}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Index')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Index')}>
             <AntDesign
               name="arrowleft"
               size={22}
@@ -342,7 +337,12 @@ const Lugala = ({navigation, route}) => {
                 return (
                   <TouchableOpacity
                     onPress={() =>
-                      navigation.navigate('Exports', {Data: item, id: data,icons:true,product:true})
+                      navigation.navigate('Exports', {
+                        Data: item,
+                        id: data,
+                        icons: true,
+                        product: true,
+                      })
                     }>
                     <Image
                       style={Stylesheet.hala}
@@ -460,13 +460,17 @@ const Lugala = ({navigation, route}) => {
             {detail.weight ? (
               <View style={Stylesheet.flexView2}>
                 <Text style={Stylesheet.Lugala_txt3}>Density</Text>
-                <Text style={Stylesheet.Lugala_txt4}>{detail.weight+'g'}</Text>
+                <Text style={Stylesheet.Lugala_txt4}>
+                  {detail.weight + 'g'}
+                </Text>
               </View>
             ) : null}
-              {detail.serving_size ? (
-              <View style={[Stylesheet.flexView2,{marginTop:5}]}>
+            {detail.serving_size ? (
+              <View style={[Stylesheet.flexView2, {marginTop: 5}]}>
                 <Text style={Stylesheet.Lugala_txt3}>serving size</Text>
-                <Text style={Stylesheet.Lugala_txt4}>{detail.serving_size}</Text>
+                <Text style={Stylesheet.Lugala_txt4}>
+                  {detail.serving_size}
+                </Text>
               </View>
             ) : null}
 
@@ -490,9 +494,12 @@ const Lugala = ({navigation, route}) => {
 
               <View>
                 <TouchableOpacity
-                style={{alignSelf:'flex-end'}}
+                  style={{alignSelf: 'flex-end'}}
                   onPress={() =>
-                    navigation.navigate('Brand', {name:detail.brand.name,id:detail.brand.id})
+                    navigation.navigate('Brand', {
+                      name: detail.brand.name,
+                      id: detail.brand.id,
+                    })
                   }>
                   <Text
                     style={[
@@ -505,12 +512,16 @@ const Lugala = ({navigation, route}) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                        style={{alignSelf:'flex-end'}}
-                  onPress={() => navigation.navigate('Company', {companyData:detail.company})}>
+                  style={{alignSelf: 'flex-end'}}
+                  onPress={() =>
+                    navigation.navigate('Company', {
+                      companyData: detail.company,
+                    })
+                  }>
                   <Text
                     style={[
                       Stylesheet.Lugala_txt4,
-                      {textDecorationLine: 'underline',},
+                      {textDecorationLine: 'underline'},
                     ]}>
                     {/* {detail?.product?.company} */}
                     {detail.company_name}
@@ -518,7 +529,7 @@ const Lugala = ({navigation, route}) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                        style={{alignSelf:'flex-end'}}
+                  style={{alignSelf: 'flex-end'}}
                   onPress={() =>
                     navigation.navigate('Manufacture', {
                       id: data,
@@ -545,8 +556,8 @@ const Lugala = ({navigation, route}) => {
                 }}>
                 <Text style={Stylesheet.Rodnae_txt9}>Suggested Products</Text>
                 <TouchableOpacity
-                  // onPress={() => navigation.navigate('Recommended_Products')}
-                  >
+                // onPress={() => navigation.navigate('Recommended_Products')}
+                >
                   <Text style={Stylesheet.Rodnae_txt11}>{'  '}</Text>
                 </TouchableOpacity>
               </View>

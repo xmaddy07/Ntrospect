@@ -67,11 +67,7 @@ const Company = ({navigation, route}) => {
               ? item.title.substring(0, 21) + '...'
               : item.title}
           </Text>
-          {/* <Text style={Stylesheet.Rodnae_txt10}>
-            {item.description.length > 30
-              ? item.description.substring(0, 50) + '...'
-              : item.description}
-          </Text> */}
+  
         </TouchableOpacity>
       </View>
     );
@@ -113,7 +109,6 @@ const Company = ({navigation, route}) => {
             <View style={Stylesheet.Nestle_CerealView}>
               <Entypo name="vinyl" size={20} color={'#5FB9E8'}/>
               <TouchableOpacity
-                // onPress={() => navigation.navigate('Manufacture')}
                 >
                 <Text style={Stylesheet.Nestle_txt4}>
                   {companyData.parent_company}

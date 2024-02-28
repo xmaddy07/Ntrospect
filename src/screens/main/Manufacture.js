@@ -26,8 +26,6 @@ import Indicator from '../../components/Indicator';
 
 const Manufacture = ({navigation, route}) => {
   const {id} = route.params;
-  const {related} = route.params;
-// console.log('object',related)
 
   const user = useSelector(state => state.user.user);
 

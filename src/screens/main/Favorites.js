@@ -47,7 +47,6 @@ const Favorites = ({navigation}) => {
         setWhishList(res.product_list);
         setGetlength(res.product_list.length);
         setLoadingCursor(false);
-        // console.log('res==========',res)
       })
       .catch(err => {
         console.log('err in article-list', err);
@@ -64,7 +63,6 @@ const Favorites = ({navigation}) => {
       .then(res => {
         console.log('object', res.length);
         setnewsdata(res.news_list);
-        // setGetlength(res.news_list.length)
         setLoadingCursor(false);
       })
       .catch(err => {
@@ -83,7 +81,6 @@ const Favorites = ({navigation}) => {
     })
       .then(res => {
         setarticledata(res.article_list);
-        // setGetlength(res.article_list.length)
         setLoadingCursor(false);
       })
       .catch(err => {
@@ -92,10 +89,7 @@ const Favorites = ({navigation}) => {
       });
   };
 
-  // const coloums =whishList?.length >2 ? 3:whishList?.length >1 ? 2:1
-  // console.log('clrchange======',clrchange)
-  // console.log('whishList++++++++',whishList.length)
-  // console.log('coloums++++++++',coloums)
+
 
   //////for news
   const Whislist_News = async id => {
@@ -157,20 +151,21 @@ const Favorites = ({navigation}) => {
     return (
       <View style={{margin: 2}}>
         <TouchableOpacity
-          onPress={() =>
-            {clrchange == 'Product'? navigation.navigate('DetailsForProducts', {id: item.id}):
-            clrchange == 'News'?navigation.navigate('DetailsForNews', {id: item.id}):
-            clrchange == 'Articles'?navigation.navigate('DetailsForArticle', {id: item.id}):null
-          }
-    
-          }
+          onPress={() => {
+            clrchange == 'Product'
+              ? navigation.navigate('DetailsForProducts', {id: item.id})
+              : clrchange == 'News'
+              ? navigation.navigate('DetailsForNews', {id: item.id})
+              : clrchange == 'Articles'
+              ? navigation.navigate('DetailsForArticle', {id: item.id})
+              : null;
+          }}
           activeOpacity={0.8}
           style={Stylesheet.Articleproduct_View}>
           <View
             style={[
               Stylesheet.prodctsBG2,
               {
-                // backgroundColor:'green',
               },
             ]}>
             <ImageBackground
@@ -225,15 +220,7 @@ const Favorites = ({navigation}) => {
   return (
     <View style={Stylesheet.Container}>
       {LoadingCursor && <Loader />}
-      {/* {modal && (
-        <FavoriteModal
-          close={parentMethod}
-          value={clrchange}
-          select={text => {
-            setclrchange(text);
-          }}
-        />
-      )} */}
+   
       <View style={Stylesheet.Headerstyle}>
         <TouchableOpacity onPress={() => navigation.navigate('MyProfile')}>
           <AntDesign name="arrowleft" size={25} style={Stylesheet.closeIcon} />
@@ -314,18 +301,6 @@ const Favorites = ({navigation}) => {
             </TouchableOpacity>
             <View style={Stylesheet.lineM}></View>
 
-            {/* <TouchableOpacity
-              style={[
-                Stylesheet.ViewM,
-                {backgroundColor: clrchange === 'Recipes' ? '#5FB9E8' : null},
-              ]}
-              onPress={() => {
-                setclrchange('Recipes');
-                setModal(false);
-              }}>
-              <Text style={Stylesheet.txt1M}>Recipes</Text>
-            </TouchableOpacity>
-            <View style={Stylesheet.lineM}></View> */}
 
             <TouchableOpacity
               style={[

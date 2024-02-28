@@ -34,8 +34,8 @@ const Term = ({navigation}) => {
           <ReadMore
             numberOfLines={14}
             style={styles.Rodnae_txt8}
-            seeMoreStyle={{color: '#5FB9E8'}}
-            seeLessStyle={{color: '#5FB9E8'}}>
+            seeMoreStyle={{color: '#A2A2A2',fontSize:10,fontFamily:family.medium}}
+                  seeLessStyle={{color: 'transparent'}}>
             Please read the following terms and conditions as these terms of use
             ( “Terms”) constitute a legally binding agreement between you and
             the Company regarding your use of the Site and any services offered

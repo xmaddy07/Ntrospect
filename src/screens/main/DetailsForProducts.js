@@ -37,7 +37,6 @@ const DetailsForProducts = ({navigation, route}) => {
   const {id} = route.params;
   const user = useSelector(state => state.user.user);
 
-
   const [clrchage, setClrchage] = useState(false);
   const [clrchage2ns, setClrchage2nd] = useState(false);
   const [clrchage3rd, setClrchage3rd] = useState(false);
@@ -52,7 +51,7 @@ const DetailsForProducts = ({navigation, route}) => {
     setIndicator(true);
     Detail_data();
   }, []);
-
+console.log('detail+++++++++++++=',JSON.stringify(detail))
   const series = [detail?.unit, detail?.protein, detail?.fat, detail?.carbs];
   const sliceColor = ['#F18F8F', '#FFC114', '#6FDB77', '#7FC8F4'];
   const widthAndHeight = 120;
@@ -133,7 +132,6 @@ const DetailsForProducts = ({navigation, route}) => {
   };
 
   const NewsProducts = ({item, index}) => {
-    // console.log('item+++',item)
     return (
       <View style={{}}>
         <TouchableOpacity
@@ -174,18 +172,17 @@ const DetailsForProducts = ({navigation, route}) => {
           visible={popupVisible}
           onClose={closePopup}
           foodDetails={{
-            foodName:detail.title,
+            foodName: detail.title,
             totalCalories: detail.calories,
-            servingSize:detail.serving_size,
-            weight:detail.weight,
+            servingSize: detail.serving_size,
+            weight: detail.weight,
           }}
           navigation={navigation}
         />
       )}
       <View style={Stylesheet.Container}>
         <View style={Stylesheet.Headerstyle}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Index')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Index')}>
             <AntDesign
               name="arrowleft"
               size={22}
@@ -340,7 +337,12 @@ const DetailsForProducts = ({navigation, route}) => {
                 return (
                   <TouchableOpacity
                     onPress={() =>
-                      navigation.navigate('Exports', {Data: item, id: id,icons:true,product:true})
+                      navigation.navigate('Exports', {
+                        Data: item,
+                        id: id,
+                        icons: true,
+                        product: true,
+                      })
                     }>
                     <Image
                       style={Stylesheet.hala}
@@ -356,7 +358,7 @@ const DetailsForProducts = ({navigation, route}) => {
               <View>
                 <Text style={Stylesheet.Lugala_txt1}>{'Ingredients'}</Text>
                 <View style={Stylesheet.flexView}>
-                  {detail.ingredient_list.map(element => (
+                  {detail?.ingredient_list.map(element => (
                     <TouchableOpacity
                       onPress={() =>
                         navigation.navigate('Exports', {
@@ -366,7 +368,7 @@ const DetailsForProducts = ({navigation, route}) => {
                       }
                       style={Stylesheet.Lugala_Ingredients}>
                       <Text style={Stylesheet.Lugala_txt2}>
-                        {element.title}
+                        {element?.ingredients?.title}
                       </Text>
                     </TouchableOpacity>
                   ))}
@@ -458,13 +460,17 @@ const DetailsForProducts = ({navigation, route}) => {
             {detail.weight ? (
               <View style={Stylesheet.flexView2}>
                 <Text style={Stylesheet.Lugala_txt3}>Density</Text>
-                <Text style={Stylesheet.Lugala_txt4}>{detail.weight+'g'}</Text>
+                <Text style={Stylesheet.Lugala_txt4}>
+                  {detail.weight + 'g'}
+                </Text>
               </View>
             ) : null}
-              {detail.serving_size ? (
-              <View style={[Stylesheet.flexView2,{marginTop:5}]}>
+            {detail.serving_size ? (
+              <View style={[Stylesheet.flexView2, {marginTop: 5}]}>
                 <Text style={Stylesheet.Lugala_txt3}>serving size</Text>
-                <Text style={Stylesheet.Lugala_txt4}>{detail.serving_size}</Text>
+                <Text style={Stylesheet.Lugala_txt4}>
+                  {detail.serving_size}
+                </Text>
               </View>
             ) : null}
 
@@ -482,41 +488,45 @@ const DetailsForProducts = ({navigation, route}) => {
               <View>
                 <Text style={Stylesheet.Lugala_txt3}>Brand</Text>
                 <Text style={Stylesheet.Lugala_txt3}>Company</Text>
-                {/* <View style={Stylesheet.line}></View> */}
                 <Text style={[Stylesheet.Lugala_txt3, {}]}>Manufacture</Text>
               </View>
 
               <View>
                 <TouchableOpacity
-                style={{alignSelf:'flex-end'}}
+                  style={{alignSelf: 'flex-end'}}
                   onPress={() =>
-                    navigation.navigate('Brand', {name:detail.brand.name,id:detail.brand.id})
+                    navigation.navigate('Brand', {
+                      name: detail.brand.name,
+                      id: detail.brand.id,
+                    })
                   }>
                   <Text
                     style={[
                       Stylesheet.Lugala_txt4,
                       {textDecorationLine: 'underline'},
                     ]}>
-                    {/* {detail?.product?.company} */}
                     {detail.brand_name}
                   </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                        style={{alignSelf:'flex-end'}}
-                  onPress={() => navigation.navigate('Company', {companyData:detail.company})}>
+                  style={{alignSelf: 'flex-end'}}
+                  onPress={() =>
+                    navigation.navigate('Company', {
+                      companyData: detail.company,
+                    })
+                  }>
                   <Text
                     style={[
                       Stylesheet.Lugala_txt4,
-                      {textDecorationLine: 'underline',},
+                      {textDecorationLine: 'underline'},
                     ]}>
-                    {/* {detail?.product?.company} */}
                     {detail.company_name}
                   </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                        style={{alignSelf:'flex-end'}}
+                  style={{alignSelf: 'flex-end'}}
                   onPress={() =>
                     navigation.navigate('Manufacture', {
                       id: id,
@@ -528,7 +538,6 @@ const DetailsForProducts = ({navigation, route}) => {
                       Stylesheet.Lugala_txt4,
                       {textDecorationLine: 'underline'},
                     ]}>
-                    {/* {detail?.product?.company} */}
                     {detail.manufacture_name}
                   </Text>
                 </TouchableOpacity>

@@ -35,7 +35,6 @@ const adUnitId = __DEV__
 
 const DetailsForNews = ({navigation, route}) => {
   const {id} = route.params;
-  // console.log('id.........', id);
 
   const user = useSelector(state => state.user.user);
 
@@ -46,7 +45,6 @@ const DetailsForNews = ({navigation, route}) => {
   const [indicatorCursor, setIndicatorCursor] = useState(false);
   const [DetailData, setDetailData] = useState([]);
   const [recomand_Data, setRecomand_Data] = useState([]);
-  console.log('DetailData.........', DetailData);
 
   useEffect(() => {
     setIndicatorCursor(true);
@@ -99,7 +97,7 @@ const DetailsForNews = ({navigation, route}) => {
 
   const renderItem = ({item, index}) => {
     return (
-      <View style={{paddingBottom: 5, marginLeft:8,}}>
+      <View style={{paddingBottom: 5, marginLeft: 8}}>
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate('RelatedItemNews', {id: item.id})}
@@ -111,7 +109,7 @@ const DetailsForNews = ({navigation, route}) => {
               resizeMode="contain"
             />
           </View>
-          <Text style={[Stylesheet.producttxt,{marginLeft:5}]}>
+          <Text style={[Stylesheet.producttxt, {marginLeft: 5}]}>
             {item.title.length > 15
               ? item.title.substring(0, 20) + '...'
               : item.title}
@@ -134,8 +132,6 @@ const DetailsForNews = ({navigation, route}) => {
       <ScrollView>
         <View>
           <View>
-            {/* <View style={Stylesheet.Rodnae_view1}></View> */}
-
             <View>
               <View>
                 <ImageBackground
@@ -176,7 +172,11 @@ const DetailsForNews = ({navigation, route}) => {
                     <Text
                       style={[
                         Stylesheet.detailAuttxt,
-                        {fontFamily:  family.medium,color:'#FFFFFF',fontSize:14},
+                        {
+                          fontFamily: family.medium,
+                          color: '#FFFFFF',
+                          fontSize: 14,
+                        },
                       ]}>
                       {moment(DetailData.published_at).format('YYYY MMM DD')}
                     </Text>
@@ -188,7 +188,11 @@ const DetailsForNews = ({navigation, route}) => {
                 <ReadMore
                   numberOfLines={10}
                   style={Stylesheet.Rodnae_txt8}
-                  seeMoreStyle={{color: '#A2A2A2',fontSize:10,fontFamily:family.medium}}
+                  seeMoreStyle={{
+                    color: '#A2A2A2',
+                    fontSize: 10,
+                    fontFamily: family.medium,
+                  }}
                   seeLessStyle={{color: 'transparent'}}>
                   {DetailData?.content_data}
                 </ReadMore>
@@ -242,6 +246,4 @@ const DetailsForNews = ({navigation, route}) => {
 };
 
 export default DetailsForNews;
-// Smarties, Nesquik, Stouffer's, Vittel, and Maggi. Nestlé has
-//                   447 factories, operates in 189 countries, and employs around
-//                   339,00
+

@@ -28,20 +28,11 @@ const MyProfile = ({navigation}) => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.user);
   const [alerts, setAlerts] = useState(false);
-  console.log('user', user);
   const [indicatorCursor, setIndicatorCursor] = useState(false);
 
   useEffect(() => {}, [user]);
 
-  // useEffect(() => {
-  //   setIndicatorCursor(true);
-  //   const timer = setTimeout(() => {
-  //     setIndicatorCursor(false);
-  //   }, 2000);
 
-  //   // Clean up the timer when the component unmounts
-  //   return () => clearTimeout(timer);
-  // }, []);
 
   const refRBSheet1 = useRef();
 
@@ -65,16 +56,7 @@ const MyProfile = ({navigation}) => {
     }
   };
 
-  // const Logout = () => {
-  //   Alert.alert('Are you soure you want to log out?', '', [
-  //     {
-  //       text: 'Cancel',
-  //       onPress: () => console.log('Cancel Pressed'),
-  //       style: 'cancel',
-  //     },
-  //     {text: 'OK', onPress: () => dispatch(logoutUser())},
-  //   ]);
-  // };
+
 
   return (
     <>

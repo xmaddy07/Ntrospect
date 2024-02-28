@@ -56,10 +56,7 @@ const Splash = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      {/* <StatusBar
-        backgroundColor="#FFFFFF" // Status bar background color
-        barStyle="dark-content" // Content color (dark or light)
-      /> */}
+
       <Image
         resizeMode="contain"
         source={images.applogo2}

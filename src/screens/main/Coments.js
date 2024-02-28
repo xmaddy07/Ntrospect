@@ -22,14 +22,11 @@ import Indicator from '../../components/Indicator';
 
 const Coments = ({navigation, route}) => {
   const {Data} = route.params;
-  // console.log('comenyt data----',Data.product.id)
   const user = useSelector(state => state.user.user);
   const [LoadingCursor, setLoadingCursor] = useState(false);
   const [clrchage, setClrchage] = useState(false);
   const [clrchage2ns, setClrchage2nd] = useState(false);
   const [clrchage3rd, setClrchage3rd] = useState(false);
-
-
 
   const flatListRef = useRef(null);
 
@@ -98,7 +95,6 @@ const Coments = ({navigation, route}) => {
           data={viewcomment}
           showsHorizontalScrollIndicator={false}
           renderItem={({item}) => {
-            // console.log('=======================================', item);
             return (
               <View style={{width: wp(90), alignSelf: 'center', margin: wp(4)}}>
                 <View
@@ -159,11 +155,15 @@ const Coments = ({navigation, route}) => {
                         fontSize: 14,
                         fontFamily: family.regular,
                         right: wp(1),
-                        color:clrchage ?'#5FB9E8':'#000',
+                        color: clrchage ? '#5FB9E8' : '#000',
                       }}>
                       {item.like.length > 1 ? item.like.length > 1 : null}
                     </Text>
-                    <AntDesign name="like2" size={20} color={clrchage ?'#5FB9E8':'#000'} />
+                    <AntDesign
+                      name="like2"
+                      size={20}
+                      color={clrchage ? '#5FB9E8' : '#000'}
+                    />
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={{
@@ -177,11 +177,15 @@ const Coments = ({navigation, route}) => {
                         fontSize: 16,
                         fontFamily: family.regular,
                         right: wp(1),
-                        color:clrchage2ns ?'#5FB9E8':'#000',
+                        color: clrchage2ns ? '#5FB9E8' : '#000',
                       }}>
                       {item.like.length > 1 ? item.like.length > 1 : null}
                     </Text>
-                    <AntDesign name="dislike2" size={20} color={clrchage2ns ?'#5FB9E8':'#000'} />
+                    <AntDesign
+                      name="dislike2"
+                      size={20}
+                      color={clrchage2ns ? '#5FB9E8' : '#000'}
+                    />
                   </TouchableOpacity>
                 </View>
 

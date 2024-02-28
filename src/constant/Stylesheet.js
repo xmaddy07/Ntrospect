@@ -793,8 +793,8 @@ export default StyleSheet.create({
     elevation: 5,
   },
   Textinpu2: {
-    width: wp(20),
-    height: hp(5),
+    width: wp(22),
+    height: hp(6),
     borderRadius: 8,
     backgroundColor: '#FFFFFF',
     alignItems: 'center',
@@ -1243,7 +1243,7 @@ alignItems:'center'
   },
   datepick: {
     width: wp(50),
-    height: hp(5),
+    height: hp(6),
     backgroundColor: '#FFFFFF',
     justifyContent: 'space-between',
     alignItems: 'center',

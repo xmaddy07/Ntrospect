@@ -70,7 +70,6 @@ const Home = ({navigation}) => {
   }, []);
 
   const barcodeDataApi = async data => {
-    // const result = data ? data : searchResults;
     const formdata = new FormData();
     formdata.append('barcode', data),
       barcodeApi({url: 'search-product', Auth: user.token}, formdata)
@@ -177,22 +176,3 @@ const Home = ({navigation}) => {
 
 export default Home;
 
-{
-  /* <QRCodeScanner
-        styles={{flex: 1, backgroundColor: 'red'}}
-        onRead={handleBarcodeRead}
-        flashMode={RNCamera.Constants.FlashMode.torch}
-        topContent={
-            <Text style={styles.centerText}>
-                Go to{' '}
-                <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on
-                your computer and scan the QR code.
-            </Text>
-        }
-        bottomContent={
-            <TouchableOpacity style={styles.buttonTouchable}>
-                <Text style={styles.buttonText}>OK. Got it!</Text>
-            </TouchableOpacity>
-        }
-      /> */
-}

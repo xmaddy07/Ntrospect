@@ -35,10 +35,8 @@ export default function ArticlesList({navigation, loader}) {
   const [indicatorCursor, setIndicatorCursor] = useState(false);
     const [subDetail, setSubDetail] = useState([]);
 
-  // console.log('subDetail]]]]]]]]]]]]', subDetail)
 
   const [Artileslist, setArtileslist] = useState([]);
-  //
   const [category, setCategory] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -92,7 +90,6 @@ export default function ArticlesList({navigation, loader}) {
         setSubDetail(res.article);
         setIndicatorCursor(false);
 
-        // console.log('res',res.message)
       })
       .catch(err => {
         console.log('err in article-list', err);
@@ -100,9 +97,7 @@ export default function ArticlesList({navigation, loader}) {
       });
   };
 /////search api
-// const settext = () => {
-//   setSearchResults();
-// };
+
   const onSearch = (txt) => {
     if (txt == '') {
       Article_hitApi();

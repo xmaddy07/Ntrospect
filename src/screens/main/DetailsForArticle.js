@@ -76,47 +76,9 @@ const DetailsForArticle = ({navigation, route}) => {
         setIndicatorCursor(false);
       });
   };
-  ////////// like
-  const LikeApi = async () => {
-    const formdata = new FormData();
-    formdata.append('article_id', id),
-      formdata.append('is_like', '1'),
-      NewsArticle_LikeDis_APIs(
-        {url: 'article-like-dislike', Auth: user.token},
-        formdata,
-      )
-        .then(res => {
-          console.log('LikeDslike response', res);
-          if (res.status == 'error') {
-          } else if (res.status === 'success') {
-            DetailArticle(id);
-          }
-        })
-        .catch(err => {
-          console.log('err in LikeDslike', err);
-        });
-  };
-  ////// dis like
+ 
 
-  const DisLikeApi = async () => {
-    const formdata = new FormData();
-    formdata.append('article_id', id),
-      formdata.append('is_like', '0'),
-      NewsArticle_LikeDis_APIs(
-        {url: 'article-like-dislike', Auth: user.token},
-        formdata,
-      )
-        .then(res => {
-          console.log('LikeDslike response', res);
-          if (res.status == 'error') {
-          } else if (res.status === 'success') {
-            DetailArticle(id);
-          }
-        })
-        .catch(err => {
-          console.log('err in LikeDslike', err);
-        });
-  };
+
   //////favorit
 
   const Whislist_API = async () => {
@@ -292,6 +254,4 @@ const DetailsForArticle = ({navigation, route}) => {
 };
 
 export default DetailsForArticle;
-// Smarties, Nesquik, Stouffer's, Vittel, and Maggi. Nestlé has
-//                   447 factories, operates in 189 countries, and employs around
-//                   339,00
+

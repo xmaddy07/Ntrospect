@@ -382,7 +382,7 @@ const Onboarding = ({navigation}) => {
                     }}
                     style={{
                       width: wp(30),
-                      minHeight: 35,
+                      minHeight:hp(6),
                       borderWidth: 0,
                       borderColor: '#E8E7EA',
                       backgroundColor: '#FFFFFF',
@@ -437,8 +437,8 @@ const Onboarding = ({navigation}) => {
                     />
                     <TouchableOpacity
                       style={{
-                        width: wp(5.2),
-                        height: wp(5.2),
+                        width: wp(5.4),
+                        height: wp(5.4),
                         backgroundColor: '#5FB9E8',
                         borderRadius: 5,
                         alignItems: 'center',
@@ -500,7 +500,7 @@ const Onboarding = ({navigation}) => {
                       }}
                       style={{
                         width: wp(50),
-                        minHeight: 35,
+                        minHeight:hp(6),
                         borderWidth: 0,
                         borderColor: '#E8E7EA',
                         backgroundColor: '#FFFFFF',
@@ -635,7 +635,7 @@ const Onboarding = ({navigation}) => {
                 </View>
               </View>
             </View>
-            <View style={{paddingBottom: 10,marginTop:90}}>
+            <View style={{paddingBottom: 35,marginTop:90}}>
               <TouchableOpacity
                 onPress={() => EditData()}
                 style={[Stylesheet.button, {alignSelf: 'center'}]}>

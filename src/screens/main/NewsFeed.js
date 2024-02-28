@@ -27,6 +27,7 @@ const NewsFeed = ({navigation}) => {
   const [searchResults, setSearchResults] = useState('');
   const [indicatorCursor, setIndicatorCursor] = useState(false);
   const [searchData, setSearchData] = useState([]);
+  const [allNewsFeed, setallNewsFeed] = useState([]);
 
   const user = useSelector(state => state.user.user);
 
@@ -41,8 +42,10 @@ const NewsFeed = ({navigation}) => {
   const hitFuction = async () => {
     ArticleNewsAPIs({url: 'article-news-list', Auth: user.token})
       .then(res => {
+        console.log('resresresresresresres',res)
         setArtiles(res.article);
         setNews(res.news);
+        setallNewsFeed(res)
         setSearchData('');
         setIndicatorCursor(false);
 
@@ -129,12 +132,7 @@ const NewsFeed = ({navigation}) => {
               margin: wp(1),
             },
           ]}>
-          {/* <View
-            style={[
-              Stylesheet.prodctsBG,
-   
-              {width: wp(36), height: hp(15), marginTop: 2, marginLeft: 2, backgroundColor: '#F8F8F8',},
-            ]}> */}
+       
           <Image
             style={[
               Stylesheet.RecommendedProducts_image,
@@ -143,7 +141,6 @@ const NewsFeed = ({navigation}) => {
             source={{uri: item.image}}
             resizeMode="contain"
           />
-          {/* </View> */}
 
           <Text style={[Stylesheet.producttxt, {}]}>
             {item.title.length > 15
@@ -189,6 +186,46 @@ const NewsFeed = ({navigation}) => {
       </View>
     );
   };
+
+  const _categoriesItem = ({item, index}) => {
+    return (
+      <View style={{marginLeft: 5}}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('DetailsForArticle', {id: item.id})
+          }
+          style={[
+            Stylesheet.RecommendedProducts_View,
+            {
+              width: wp(37),
+              height: 160,
+              margin: wp(1),
+            },
+          ]}>
+       
+          <Image
+            style={[
+              Stylesheet.RecommendedProducts_image,
+              {width: wp(37), height: hp(14), borderRadius: 5},
+            ]}
+            source={{uri: item.img_url}}
+            resizeMode="contain"
+          />
+
+          <Text style={[Stylesheet.producttxt, {}]}>
+            {item.title.length > 15
+              ? item.title.substring(0, 36) + '...'
+              : item.title}
+          </Text>
+          {/* <Text style={[Stylesheet.Recommended_descriptiontxt,{}]}>
+      {item?.description.length >10
+          ? item?.description.substring(0, 17) + '...'
+          : item?.description}
+      </Text> */}
+        </TouchableOpacity>
+      </View>
+    );
+  };
   return (
     <View style={Stylesheet.Container}>
       {indicatorCursor && <Indicator />}
@@ -210,7 +247,7 @@ const NewsFeed = ({navigation}) => {
                   <Text style={Stylesheet.ProductName_txt2}>See more</Text>
                 </TouchableOpacity>
               </View>
-              <View style={{height: hp(24)}}>
+              <View style={{height: hp(26),marginTop:10,}}>
                 <FlatList
                   showsHorizontalScrollIndicator={false}
                   horizontal={true}
@@ -249,7 +286,7 @@ const NewsFeed = ({navigation}) => {
                   <Text style={Stylesheet.ProductName_txt2}>See more</Text>
                 </TouchableOpacity>
               </View>
-              <View style={{height: hp(24)}}>
+              <View style={{height: hp(26),marginTop:10,}}>
                 <FlatList
                   showsHorizontalScrollIndicator={false}
                   horizontal={true}
@@ -309,6 +346,66 @@ const NewsFeed = ({navigation}) => {
               </View>
             </>
           ) : null}
+
+<View>
+  <FlatList
+  data={allNewsFeed.news_list}
+  renderItem={({item,index})=>{
+    return (
+      <View style={{}}>
+          <View style={[Stylesheet.txt1_View, {marginTop: wp(0)}]}>
+                <Text style={[Stylesheet.ProductName_txt1, {left: wp(2.5)}]}>
+                  {item?.category_name}
+                </Text>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('ArticlesList')}>
+                  <Text style={Stylesheet.ProductName_txt2}>See more</Text>
+                </TouchableOpacity>
+              </View>
+
+        <View style={{height: hp(26),marginTop:10,}}>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            data={item?.news}
+            renderItem={_categoriesItem}
+            // ListFooterComponent={({item, index}) => {
+            //   return (
+            //     <TouchableOpacity
+            //       onPress={() =>
+            //         navigation.navigate('ProductsList', {id: 'baked',name: 'Baked Goods',
+            //         })
+            //       }>
+            //       {allNewsFeed ? (
+            //         <View
+            //           style={{
+            //             width: wp(26),
+            //             height: 90,
+            //             borderRadius: 10,
+            //             // backgroundColor:'#F8F8F8',
+            //             alignItems: 'center',
+            //             justifyContent: 'center',
+            //             marginTop: 10,
+            //           }}>
+            //           <Text
+            //             style={[
+            //               Stylesheet.ProductName_txt2,
+            //               {right: 0},
+            //             ]}>
+            //             See more
+            //           </Text>
+            //         </View>
+            //       ) : null}
+            //     </TouchableOpacity>
+            //   );
+            // }}
+          />
+        </View>
+      </View>
+    );
+  }}
+  />
+</View>
 
           {/* <View style={Stylesheet.txt1_View}>
           <Text style={Stylesheet.ProductName_txt1}>Recipes</Text>

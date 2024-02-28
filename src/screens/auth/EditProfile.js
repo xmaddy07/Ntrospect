@@ -340,9 +340,7 @@ const EditProfile = ({navigation}) => {
             {value3 == 'Imperial System' ? 'cm' : 'ft'}
           </Text>
 
-          {/* <View style={Stylesheet.heigharrow}>
-                <AntDesign name="down" size={14} color={'#000'} />
-              </View> */}
+ 
         </View>
       </View>
 

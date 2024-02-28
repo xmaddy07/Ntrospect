@@ -33,7 +33,6 @@ const Brand = ({navigation,route}) => {
   const [detail, setDetailss] = useState([]);
   const [searchResults, setSearchResults] = useState('');
   const [SearchData, setSearchData] = useState([]);
-  console.log('SearchData',SearchData)
 
     useEffect(() => {
     Detail_data(id);
@@ -67,17 +66,7 @@ const Brand = ({navigation,route}) => {
   
 
   
-  // const Detail_data = async id => {
-  //   Detail_API({url: 'product-detail', Auth: user.token, id: id})
-  //     .then(res => {
-  //       setDetailss(res.product.brand);
-  //       setIndicator(false);
-  //     })
-  //     .catch(err => {
-  //       console.log('err in article-list', err);
-  //       setIndicator(false);
-  //     });
-  // };
+
 
 
 
@@ -92,7 +81,6 @@ const Brand = ({navigation,route}) => {
             style={[
               Stylesheet.prodctsBG2,
               {
-                // backgroundColor:'green',
               },
             ]}>
             <ImageBackground
@@ -136,7 +124,6 @@ const Brand = ({navigation,route}) => {
             style={[
               Stylesheet.prodctsBG2,
               {
-                // backgroundColor:'green',
               },
             ]}>
             <ImageBackground

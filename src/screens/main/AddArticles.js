@@ -40,7 +40,6 @@ const AddArticles = ({navigation}) => {
   console.log('value2', value2);
 
   const [subcategory, setSubcategory] = useState('');
-  // console.log('subcategory]]]]]]]]]]]]', subcategory);
 
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
@@ -224,11 +223,8 @@ const AddArticles = ({navigation}) => {
                 borderRadius: 5,
                 alignItems: 'center',
                 justifyContent: 'center',
-                // left: wp(2),
               }}
-              // listItemContainerStyle={{height: wp(8)}}
-              // listItemLabelStyle={{height: wp(8)}}
-              // showArrowIcon={false}
+     
               labelStyle={{
                 fontFamily: family.regular,
                 fontSize: 14,
@@ -245,7 +241,6 @@ const AddArticles = ({navigation}) => {
               style={{
                 width: wp(85),
                 height: hp(7),
-                // minHeight: 35,
                 borderWidth: 0,
                 borderColor: '#E8E7EA',
                 backgroundColor: '#FFFFFF',
@@ -291,11 +286,8 @@ const AddArticles = ({navigation}) => {
                 borderRadius: 5,
                 alignItems: 'center',
                 justifyContent: 'center',
-                // left: wp(2),
               }}
-              // listItemContainerStyle={{height: wp(8)}}
-              // listItemLabelStyle={{height: wp(8)}}
-              // showArrowIcon={false}
+          
               labelStyle={{
                 fontFamily: family.regular,
                 fontSize: 14,
@@ -333,16 +325,7 @@ const AddArticles = ({navigation}) => {
               selectedItemLabelStyle={{color: 'white'}}
             />
 
-          {/* {!subDetail?  <View
-              style={{
-                backgroundColor: '#FFFFFF',
-                elevation:2,
-                width: wp(85),
-                height: hp(7),
-                borderRadius: 10,
-                position: 'absolute',
-                top: wp(8),
-              }}></View>:null} */}
+
           </View>
 
           <Text
@@ -361,8 +344,7 @@ const AddArticles = ({navigation}) => {
               height: hp(20),
               backgroundColor: '#FFFFFF',
               borderRadius: 10,
-              // alignItems: 'center',
-              // justifyContent: 'center',
+  
               elevation: 2,
               color: '#000',
               marginTop: 10,
