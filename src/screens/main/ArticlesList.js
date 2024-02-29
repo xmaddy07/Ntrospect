@@ -25,7 +25,9 @@ import {UIActivityIndicator} from 'react-native-indicators';
 import {SearchAPI} from '../../components/ApiScreen';
 import SeatchBar from '../../components/seatchBar';
 
-export default function ArticlesList({navigation, loader}) {
+export default function ArticlesList({navigation, loader,route}) {
+
+
   const user = useSelector(state => state.user.user);
 
   const [searchResults, setSearchResults] = useState('');
@@ -74,6 +76,8 @@ export default function ArticlesList({navigation, loader}) {
         setIsLoading(false);
       });
   };
+
+
 
   
   //////Sub_Category_APi
@@ -224,7 +228,7 @@ export default function ArticlesList({navigation, loader}) {
               onPress={() => setModal(false)}
               style={Stylesheet.chartIconM}></TouchableOpacity>
 
-            <View style={Stylesheet.activityIndicatorWrapperM}>
+            {/* <View style={Stylesheet.activityIndicatorWrapperM}>
               {category.map(item => (
                 <>
                   <TouchableOpacity
@@ -245,7 +249,7 @@ export default function ArticlesList({navigation, loader}) {
                   <View style={Stylesheet.lineM}></View>
                 </>
               ))}
-            </View>
+            </View> */}
           </View>
         </Modal>
     </View>

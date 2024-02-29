@@ -22,6 +22,7 @@ import {
 import moment from 'moment';
 import {NewsArticle_AddFav_APIs} from '../../components/ApiScreen';
 import SeatchBar from '../../components/seatchBar';
+import Indicator from '../../components/Indicator';
 
 const Favorites = ({navigation}) => {
   const user = useSelector(state => state.user.user);
@@ -71,7 +72,6 @@ const Favorites = ({navigation}) => {
       });
   };
 
-  console.log('clrchange', clrchange);
 
   const articlelist = async () => {
     setLoadingCursor(true);
@@ -219,7 +219,7 @@ const Favorites = ({navigation}) => {
 
   return (
     <View style={Stylesheet.Container}>
-      {LoadingCursor && <Loader />}
+      {LoadingCursor && <Indicator />}
    
       <View style={Stylesheet.Headerstyle}>
         <TouchableOpacity onPress={() => navigation.navigate('MyProfile')}>
@@ -230,9 +230,9 @@ const Favorites = ({navigation}) => {
         <Text style={Stylesheet.home_txt1}>{'  '}</Text>
       </View>
 
-      <SeatchBar filter={parentModal} filtertrue={true} />
+   <SeatchBar filter={parentModal} filtertrue={true} />
 
-      <View style={{flex: 1}}>
+    {whishList.length?  <View style={{flex: 1}}>
         <FlatList
           numColumns={3}
           keyExtractor={(item, index) => item.key}
@@ -248,7 +248,7 @@ const Favorites = ({navigation}) => {
             <Text style={Stylesheet.emptytxt}>No data available</Text>
           }
         />
-      </View>
+      </View>:null}
 
       {/* ///////////// Modal */}
       <Modal transparent={true} animationType={'none'} visible={modal}>

@@ -39,13 +39,11 @@ const Lugala = ({navigation, route}) => {
 
   const [clrchage3rd, setClrchage3rd] = useState(false);
   const [indicator, setIndicator] = useState(false);
-
+  const [popupVisible, setPopupVisible] = useState(false);
   const [ShowComment, setShowComment] = useState(false);
   const [detail, setDetailss] = useState([]);
   const [recomand_Data, setRecomand_Data] = useState([]);
-  console.log('object', detail);
   useEffect(() => {
-    setIndicator(true);
     Detail_data();
   }, []);
 
@@ -54,6 +52,7 @@ const Lugala = ({navigation, route}) => {
   const widthAndHeight = 120;
 
   const Detail_data = async => {
+    setIndicator(true);
     Detail_API({url: 'product-detail', Auth: user.token, id: data})
       .then(res => {
         setDetailss(res.product);
@@ -68,7 +67,6 @@ const Lugala = ({navigation, route}) => {
 
   /////Like_API
   const LikeApi = async () => {
-    setClrchage(true);
     const formdata = new FormData();
     formdata.append('product_id', data),
       formdata.append('is_like', '1'),
@@ -105,7 +103,6 @@ const Lugala = ({navigation, route}) => {
 
   /////Whislist_API
   const Whislist_API = async () => {
-    setClrchage3rd(true);
     const formdata = new FormData();
     formdata.append('product_id', data),
       WhishAPI({url: 'add-fav-product', Auth: user.token}, formdata)
@@ -118,9 +115,7 @@ const Lugala = ({navigation, route}) => {
           console.log('err in add-fav', err);
         });
   };
-  // console.log('object',detail?.comment_count)
 
-  const [popupVisible, setPopupVisible] = useState(false);
 
   const openPopup = () => {
     setPopupVisible(true);
@@ -180,7 +175,7 @@ const Lugala = ({navigation, route}) => {
           navigation={navigation}
         />
       )}
-      <View style={Stylesheet.Container}>
+   {detail?   <View style={Stylesheet.Container}>
         <View style={Stylesheet.Headerstyle}>
           <TouchableOpacity onPress={() => navigation.navigate('Index')}>
             <AntDesign
@@ -572,7 +567,7 @@ const Lugala = ({navigation, route}) => {
             </View>
           </View>
         </ScrollView>
-      </View>
+      </View>:null}
     </>
   );
 };

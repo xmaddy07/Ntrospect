@@ -30,14 +30,15 @@ import Indicator from '../../components/Indicator';
 import {UIActivityIndicator} from 'react-native-indicators';
 import SeatchBar from '../../components/seatchBar';
 
-export default function NewsList({navigation, loader}) {
+export default function NewsList({navigation, loader,route}) {
+const {id,name}=route.params
+
   const user = useSelector(state => state.user.user);
 
   const [searchResults, setSearchResults] = useState('');
   const [modal, setModal] = useState(false);
   const [clrchange, setclrchange] = useState('');
   console.log('object', clrchange);
-  const [LoadingCursor, setLoadingCursor] = useState(false);
   const [indicatorCursor, setIndicatorCursor] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -46,8 +47,10 @@ export default function NewsList({navigation, loader}) {
 
   const category = ['Recommendations', 'New to old','Most popular'];
   const [filter, setFilter] = useState([]);
-
   const [Newslist, setNewslist] = useState([]);
+  const [CategoryDetails, setCategoryDetails] = useState([]);
+  console.log('response of newsss categories',JSON.stringify(CategoryDetails))
+
 
   const handleEndReached = () => {
     if (!isLoading && pagination < backEnd) {
@@ -61,22 +64,56 @@ export default function NewsList({navigation, loader}) {
   };
 
   //
-
   useEffect(() => {
-    news_hitApi();
+    if(id){
+      setIndicatorCursor(true);
+        BothArticlesList({
+          url: `news-by-category/${id}?page=${pagination}`,
+          Auth: user.token,
+        })
+          .then(res => {
+            setCategoryDetails(res.data.data);
+            setIndicatorCursor(false);
+          })
+          .catch(err => {
+            console.log('err in news categories', err);
+            setIndicatorCursor(false);
+          });
+   
+    }else{
+      news_hitApi()
+    }
   }, []);
+
+  const _categoriesItem=()=>{
+    BothArticlesList({
+      url: `news-by-category/${id}?page=${pagination}`,
+      Auth: user.token,
+    })
+      .then(res => {
+        setCategoryDetails(res.data.data);
+      })
+      .catch(err => {
+        console.log('err in product-list', err);
+      });
+  }
+
   const news_hitApi = async () => {
-    setIsLoading(true);
+    setIndicatorCursor(true);
     BothArticlesList({url: `news-list?page=${pagination}`, Auth: user.token})
       .then(res => {
         setNewslist(res.news);
-        setIsLoading(false);
+        setIndicatorCursor(false);
       })
       .catch(err => {
         console.log('err in news-list', err);
-        setIsLoading(false);
+        setIndicatorCursor(false);
       });
   };
+
+
+
+
 
   const Filter = async clrchange => {
     setIndicatorCursor(true);
@@ -98,14 +135,18 @@ export default function NewsList({navigation, loader}) {
       });
   };
 
+
+
   const onSearch = txt => {
     if (txt == '') {
-      news_hitApi();
+      news_hitApi()
+      _categoriesItem(id)
     } else {
       SearchAPI({url: `news-list-search/${txt}`, Auth: user.token})
         .then(res => {
           setNewslist(res.news);
           setFilter(res.news);
+          setCategoryDetails(res.news)
           setSearchResults(txt);
         })
         .catch(err => {
@@ -156,7 +197,6 @@ export default function NewsList({navigation, loader}) {
   };
   return (
     <View style={Stylesheet.Container}>
-      {LoadingCursor && <Loader />}
       {indicatorCursor && <Indicator />}
       <View style={Stylesheet.Headerstyle}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -168,20 +208,33 @@ export default function NewsList({navigation, loader}) {
         </Text>
         <Text>{'    '}</Text>
       </View>
+      {CategoryDetails.length || Newslist.length ? 
       <SeatchBar
         filter={parentModal}
-        filtertrue={true}
+        filtertrue={id?false:true}
         serchtext={txt => onSearch(txt)}
-      />
-      <View style={{flex: 1,marginTop:10}}>
-        <FlatList
+      />:null}
+   {CategoryDetails.length || Newslist.length ?   <View style={{flex: 1,marginTop:10}}>
+    {!CategoryDetails.length?    <FlatList
           data={clrchange ? filter : Newslist}
           renderItem={newslistitemss}
           keyExtractor={(item, index) => index.toString()}
           onEndReached={!searchResults ? handleEndReached : null}
           ListFooterComponent={renderFooter}
-        />
-      </View>
+        />:
+        
+        <FlatList
+        data={CategoryDetails}
+        renderItem={newslistitemss}
+        keyExtractor={(item, index) => index.toString()}
+        onEndReached={!searchResults ? handleEndReached : null}
+        ListFooterComponent={renderFooter}
+      />
+        }
+        
+      </View>:null}
+
+
       {/* ///////////// Modal */}
       <Modal transparent={true} animationType={'none'} visible={modal}>
         <View style={Stylesheet.modalBackgroundM}>

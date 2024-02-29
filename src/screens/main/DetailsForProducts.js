@@ -32,6 +32,7 @@ import Loader from '../../components/loader';
 import CommentModal from '../../components/CommentModal';
 import moment from 'moment';
 import JournalInput from '../../components/JournalInput';
+import Indicator from '../../components/Indicator';
 
 const DetailsForProducts = ({navigation, route}) => {
   const {id} = route.params;
@@ -48,15 +49,14 @@ const DetailsForProducts = ({navigation, route}) => {
   const [detail, setDetailss] = useState([]);
   const [recomand_Data, setRecomand_Data] = useState([]);
   useEffect(() => {
-    setIndicator(true);
     Detail_data();
   }, []);
-console.log('detail+++++++++++++=',JSON.stringify(detail))
   const series = [detail?.unit, detail?.protein, detail?.fat, detail?.carbs];
   const sliceColor = ['#F18F8F', '#FFC114', '#6FDB77', '#7FC8F4'];
   const widthAndHeight = 120;
 
   const Detail_data = async => {
+    setIndicator(true);
     Detail_API({url: 'product-detail', Auth: user.token, id: id})
       .then(res => {
         setDetailss(res.product);
@@ -71,7 +71,6 @@ console.log('detail+++++++++++++=',JSON.stringify(detail))
 
   /////Like_API
   const LikeApi = async () => {
-    setClrchage(true);
     const formdata = new FormData();
     formdata.append('product_id', id),
       formdata.append('is_like', '1'),
@@ -106,7 +105,6 @@ console.log('detail+++++++++++++=',JSON.stringify(detail))
 
   /////Whislist_API
   const Whislist_API = async () => {
-    setClrchage3rd(true);
     const formdata = new FormData();
     formdata.append('product_id', id),
       WhishAPI({url: 'add-fav-product', Auth: user.token}, formdata)
@@ -165,7 +163,7 @@ console.log('detail+++++++++++++=',JSON.stringify(detail))
   };
   return (
     <>
-      {indicator && <Loader />}
+      {indicator && <Indicator />}
       {ShowComment && <CommentModal Data={id} close={parentMethod} />}
       {popupVisible && (
         <JournalInput
@@ -180,7 +178,7 @@ console.log('detail+++++++++++++=',JSON.stringify(detail))
           navigation={navigation}
         />
       )}
-      <View style={Stylesheet.Container}>
+   {detail?   <View style={Stylesheet.Container}>
         <View style={Stylesheet.Headerstyle}>
           <TouchableOpacity onPress={() => navigation.navigate('Index')}>
             <AntDesign
@@ -567,7 +565,7 @@ console.log('detail+++++++++++++=',JSON.stringify(detail))
             </View>
           </View>
         </ScrollView>
-      </View>
+      </View>:null}
     </>
   );
 };

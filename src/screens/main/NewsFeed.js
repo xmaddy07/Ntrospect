@@ -24,32 +24,28 @@ import SeatchBar from '../../components/seatchBar';
 import Loader from '../../components/loader';
 
 const NewsFeed = ({navigation}) => {
+  const user = useSelector(state => state.user.user);
   const [searchResults, setSearchResults] = useState('');
   const [indicatorCursor, setIndicatorCursor] = useState(false);
   const [searchData, setSearchData] = useState([]);
   const [allNewsFeed, setallNewsFeed] = useState([]);
-
-  const user = useSelector(state => state.user.user);
-
   const [Artiles, setArtiles] = useState([]);
   const [News, setNews] = useState([]);
+  console.log('News',News)
 
   useEffect(() => {
-    setIndicatorCursor(true);
     hitFuction();
   }, []);
 
   const hitFuction = async () => {
+    setIndicatorCursor(true);
     ArticleNewsAPIs({url: 'article-news-list', Auth: user.token})
       .then(res => {
-        console.log('resresresresresresres',res)
         setArtiles(res.article);
         setNews(res.news);
         setallNewsFeed(res)
         setSearchData('');
         setIndicatorCursor(false);
-
-        console.log('res', res.message);
       })
       .catch(err => {
         console.log('err in article-list', err);
@@ -63,7 +59,6 @@ const NewsFeed = ({navigation}) => {
     } else {
       SearchAPI({url: `article-news-search/${txt}`, Auth: user.token})
         .then(res => {
-          console.log('++++++++++++', res);
           setSearchData(res.data);
           setNews('');
           setArtiles('');
@@ -82,10 +77,9 @@ const NewsFeed = ({navigation}) => {
           style={[
             Stylesheet.RecommendedProducts_View,
             {
-              width: wp(37),
-              // alignItems: 'center',
+              width: wp(36),
               height: 160,
-              margin: wp(1),
+              margin:3,
             },
           ]}>
           {/* <View
@@ -96,7 +90,7 @@ const NewsFeed = ({navigation}) => {
           <Image
             style={[
               Stylesheet.RecommendedProducts_image,
-              {width: wp(37), height: hp(14), borderRadius: 5},
+              {width: wp(36), height: hp(17), borderRadius: 5},
             ]}
             source={{uri: item.image}}
             resizeMode="contain"
@@ -127,16 +121,16 @@ const NewsFeed = ({navigation}) => {
           style={[
             Stylesheet.RecommendedProducts_View,
             {
-              width: wp(37),
+              width: wp(36),
               height: 160,
-              margin: wp(1),
+              margin:3,
             },
           ]}>
        
           <Image
             style={[
               Stylesheet.RecommendedProducts_image,
-              {width: wp(37), height: hp(14), borderRadius: 5},
+              {width: wp(36), height: hp(17), borderRadius: 5},
             ]}
             source={{uri: item.image}}
             resizeMode="contain"
@@ -233,8 +227,8 @@ const NewsFeed = ({navigation}) => {
         <Text style={Stylesheet.home_txt1}>News Feed</Text>
       </View>
 
-      <SeatchBar serchtext={txt => onSearch(txt)} />
-      <ScrollView>
+   {allNewsFeed?   <SeatchBar serchtext={txt => onSearch(txt)} />:null}
+ {allNewsFeed?     <ScrollView>
         <View>
           {News?.length ? (
             <>
@@ -243,7 +237,9 @@ const NewsFeed = ({navigation}) => {
                   News
                 </Text>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('NewsList')}>
+                  onPress={() => navigation.navigate('NewsList',{
+                    id:null
+                  })}>
                   <Text style={Stylesheet.ProductName_txt2}>See more</Text>
                 </TouchableOpacity>
               </View>
@@ -351,6 +347,7 @@ const NewsFeed = ({navigation}) => {
   <FlatList
   data={allNewsFeed.news_list}
   renderItem={({item,index})=>{
+  
     return (
       <View style={{}}>
           <View style={[Stylesheet.txt1_View, {marginTop: wp(0)}]}>
@@ -358,7 +355,10 @@ const NewsFeed = ({navigation}) => {
                   {item?.category_name}
                 </Text>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('ArticlesList')}>
+                  onPress={() => navigation.navigate('NewsList',{
+                    id:item.category_id,
+                    name:item.category_name
+                  })}>
                   <Text style={Stylesheet.ProductName_txt2}>See more</Text>
                 </TouchableOpacity>
               </View>
@@ -421,7 +421,7 @@ const NewsFeed = ({navigation}) => {
           />
         </View> */}
         </View>
-      </ScrollView>
+      </ScrollView>:null}
     </View>
   );
 };

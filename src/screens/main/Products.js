@@ -60,6 +60,7 @@ const Products = ({navigation}) => {
         setIndicatorCursor(false);
         if (res.message == 'Unauthenticated.') {
           dispatch(logoutUser());
+
         }
         setRecomemded(res.recommendation);
         setAllcategories(res.categories);
@@ -178,7 +179,7 @@ const Products = ({navigation}) => {
         <Text style={Stylesheet.home_txt1}>Products</Text>
       </View>
       {/* <SeatchBar serchtext={txt => onSearch(txt)} /> */}
-      <ScrollView >
+  {recomemded || allcategories?    <ScrollView >
         <View style={{paddingBottom: wp(5)}}>
           {recomemded?.length ? (
             <View>
@@ -303,7 +304,7 @@ const Products = ({navigation}) => {
 </View>
 
         </View>
-      </ScrollView>
+      </ScrollView>:null}
     </View>
   );
 };

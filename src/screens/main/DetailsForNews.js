@@ -47,11 +47,11 @@ const DetailsForNews = ({navigation, route}) => {
   const [recomand_Data, setRecomand_Data] = useState([]);
 
   useEffect(() => {
-    setIndicatorCursor(true);
     DetailNews(id);
   }, []);
 
   const DetailNews = async id => {
+    setIndicatorCursor(true);
     NewsArticle_Detail_APIs({
       url: 'news-detail',
       Auth: user.token,
@@ -129,7 +129,7 @@ const DetailsForNews = ({navigation, route}) => {
       {indicatorCursor && <Indicator />}
       {ShowComment && <CommentForNews Data={id} close={parentMethod} />}
 
-      <ScrollView>
+   {DetailData.length || recomand_Data.length?   <ScrollView>
         <View>
           <View>
             <View>
@@ -240,7 +240,7 @@ const DetailsForNews = ({navigation, route}) => {
             </View>
           </View>
         </View>
-      </ScrollView>
+      </ScrollView>:null}
     </View>
   );
 };

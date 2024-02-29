@@ -17,7 +17,8 @@ const Indicator = ({loader,y}) => {
     <Modal transparent={true} animationType={'none'} visible={loader}>
       <View style={styles.modalBackground}>
         {/* <View style={styles.activityIndicatorWrapper}> */}
-        <UIActivityIndicator color='#5FB9E8' size={25} />
+        <BarIndicator color='#5FB9E8' size={25} />
+      
         {/* </View>  */}
         
       </View>

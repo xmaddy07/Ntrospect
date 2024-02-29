@@ -76,7 +76,7 @@ export default function SeatchBar({serchtext,hitapi,filter,filtertrue,}) {
           style={{   
           backgroundColor: '#DADADA',
           width: wp(11),
-          height: wp(11.1),
+          height: hp(6.25),
           top:2.3,
           alignItems: 'center',
           justifyContent: 'center',

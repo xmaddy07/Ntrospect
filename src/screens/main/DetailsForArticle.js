@@ -39,15 +39,9 @@ const adUnitId = __DEV__
 
 const DetailsForArticle = ({navigation, route}) => {
   const {id} = route.params;
-  // console.log('id.........', id);
-
   const user = useSelector(state => state.user.user);
-
-  const [clrchage3rd, setClrchage3rd] = useState(false);
-
   const [ShowComment, setShowComment] = useState(false);
   const [indicatorCursor, setIndicatorCursor] = useState(false);
-
   const [DetailData, setDetailData] = useState([]);
   const [recomand_Data, setRecomand_Data] = useState([]);
 
@@ -141,7 +135,7 @@ const DetailsForArticle = ({navigation, route}) => {
       {ShowComment && <CommentForArticle Data={id} close={parentMethod} />}
 
 
-      <ScrollView>
+    {recomand_Data.length || recomand_Data.length?  <ScrollView>
         <View>
           <View>
             <View style={Stylesheet.Rodnae_view1}></View>
@@ -248,7 +242,7 @@ const DetailsForArticle = ({navigation, route}) => {
             </View>
           </View>
         </View>
-      </ScrollView>
+      </ScrollView>:null}
     </View>
   );
 };
